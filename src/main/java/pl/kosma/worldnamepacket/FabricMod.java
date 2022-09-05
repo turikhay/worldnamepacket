@@ -12,12 +12,18 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
+import java.nio.file.Paths;
+
 
 public class FabricMod implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger();
-    
+
+    private static WorldNameConfig config;
+
     @Override
     public void onInitialize() {
+        config = WorldNameConfig.load(Paths.get("config", "worldnamepacket.properties"));
+
     	ServerPlayNetworking.registerGlobalReceiver(new Identifier(WorldNamePacket.CHANNEL_NAME_VOXELMAP),
 				(server, player, handler, buf, responseSender) -> { sendResponse(player, WorldNamePacket.CHANNEL_NAME_VOXELMAP, buf); });
     }
