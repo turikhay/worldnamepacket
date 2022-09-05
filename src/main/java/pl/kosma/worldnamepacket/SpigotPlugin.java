@@ -9,9 +9,16 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
+import java.nio.file.Paths;
+
 public class SpigotPlugin extends JavaPlugin implements Listener, PluginMessageListener {
+
+	private WorldNameConfig config;
+
 	@Override
 	public void onEnable() {
+		this.config = WorldNameConfig.load(getDataFolder().toPath().resolve("worldnamepacket.properties"));
+
 		this.getServer().getPluginManager().registerEvents(this, this);
 		this.getServer().getMessenger().registerIncomingPluginChannel(this, WorldNamePacket.CHANNEL_NAME_VOXELMAP, this);
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, WorldNamePacket.CHANNEL_NAME_VOXELMAP);
