@@ -46,7 +46,7 @@ public class WorldNamePacket {
      * Helper function for debugging packet-related issues.
      */
     public static String byteArrayToHexString(byte[] data) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
 
         for (int i = 0; i != data.length; i++) {
             int v = data[i] & 0xff;
