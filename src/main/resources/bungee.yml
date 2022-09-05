@@ -1,0 +1,4 @@
+name: WorldNamePacket
+main: pl.kosma.worldnamepacket.BungeePlugin
+author: Kosma Moczek <kosma@kosma.pl>
+version: ${version}
