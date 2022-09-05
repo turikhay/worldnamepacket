@@ -2,6 +2,7 @@ package pl.kosma.worldnamepacket;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class WorldNamePacket {
     private static final byte FORGE_PACKET_DISCRIMINATOR = 0;
@@ -27,10 +28,7 @@ public class WorldNamePacket {
          *
          * Hell is other people's code.
          */
-        boolean useForgeDiscriminator = true;
-        if (requestBytes.equals(VOXELMAP_FABRIC_REQUEST_PACKET)) {
-            useForgeDiscriminator = false;
-        }
+        boolean useForgeDiscriminator = !Arrays.equals(requestBytes, VOXELMAP_FABRIC_REQUEST_PACKET);
 
         byte[] worldNameBytes = worldName.getBytes(StandardCharsets.UTF_8);
 
