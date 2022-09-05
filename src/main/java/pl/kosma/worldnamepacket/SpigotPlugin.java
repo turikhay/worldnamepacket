@@ -33,7 +33,7 @@ public class SpigotPlugin extends JavaPlugin implements Listener, PluginMessageL
 	
 	private void sendWorldName(Player player, String channel, byte[] bytes) {
 		String worldName = player.getWorld().getName();
-		byte[] responseBytes = WorldNamePacket.formatResponsePacket(bytes, worldName);
+		byte[] responseBytes = WorldNamePacket.formatResponsePacket(bytes, config.getNamePrefix(), worldName);
 		this.getLogger().info("WorldNamePacket: ["+channel+"] sending levelName: " + worldName);
 		player.sendPluginMessage(this, channel, responseBytes);
 	}

@@ -1,5 +1,6 @@
 package pl.kosma.worldnamepacket;
 
+import javax.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -12,7 +13,7 @@ public class WorldNamePacket {
     public static final String CHANNEL_NAME_XAEROMAP = "xaeroworldmap:main";
     private static final String HEX_DIGITS = "0123456789abcdef";
 
-    public static byte[] formatResponsePacket(byte[] requestBytes, String worldName)
+    public static byte[] formatResponsePacket(byte[] requestBytes, @Nullable String prefix, String ogWorldName)
     {
         /**
          * Workaround for a bug in VoxelMap for Fabric.
@@ -30,6 +31,7 @@ public class WorldNamePacket {
          */
         boolean useForgeDiscriminator = !Arrays.equals(requestBytes, VOXELMAP_FABRIC_REQUEST_PACKET);
 
+        String worldName = (prefix == null ? "" : prefix + "_") + ogWorldName;
         byte[] worldNameBytes = worldName.getBytes(StandardCharsets.UTF_8);
 
         ByteArrayOutputStream responseStream = new ByteArrayOutputStream();

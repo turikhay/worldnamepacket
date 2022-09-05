@@ -40,7 +40,7 @@ public class FabricMod implements ModInitializer {
     {
 		String levelName = ((MinecraftDedicatedServer) player.getServerWorld().getServer()).getLevelName();
         byte[] requestBytes = (buf != null) ? buf.slice().array() : new byte[0];
-        byte[] responseBytes = WorldNamePacket.formatResponsePacket(requestBytes, levelName);
+        byte[] responseBytes = WorldNamePacket.formatResponsePacket(requestBytes, config.getNamePrefix(), levelName);
 
 		PacketByteBuf responsePacket = PacketByteBufs.create();
 		responsePacket.writeBytes(responseBytes);
